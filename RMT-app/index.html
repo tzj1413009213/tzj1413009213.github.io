@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <meta name="description" content="不超过150个字符"/>
+    <meta name="keywords" content=""/>
+    <meta content="caibaojian" name="author"/>
+    <link rel='icon' type="image/x-icon" href="./ico.ico" />
+    <title></title>
+    <script type="text/javascript">
+        // 兼容各个手机端的rem
+        !function(e,t){function n(){var n=l.getBoundingClientRect().width;t=t||540,n>t&&(n=t);var i=75*n/e;r.innerHTML="html{font-size:"+i+"px;}"}var i,d=document,o=window,l=d.documentElement,r=document.createElement("style");if(l.firstElementChild)l.firstElementChild.appendChild(r);else{var a=d.createElement("div");a.appendChild(r),d.write(a.innerHTML),a=null}n(),o.addEventListener("resize",function(){clearTimeout(i),i=setTimeout(n,300)},!1),o.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(i),i=setTimeout(n,300))},!1),"complete"===d.readyState?d.body.style.fontSize="16px":d.addEventListener("DOMContentLoaded",function(e){d.body.style.fontSize="16px"},!1)}(750,750);
+        // H5 plus事件处理
+        function plusReady(){
+            // 隐藏滚动条
+            plus.webview.currentWebview().setStyle({scrollIndicator:'none'});
+            // Android处理返回键
+            plus.key.addEventListener('backbutton',function(){
+                if(window.location.hash == '#/home/homepage'){
+                    ('iOS'==plus.os.name)?plus.nativeUI.confirm('确认退出？', function(e){
+                            if(e.index>0){
+                                plus.runtime.quit();
+                            }
+                        }, 'HelloH5', ['取消','确定']):(confirm('确认退出？')&&plus.runtime.quit());
+                }else {
+                    window.history.back();
+                }
+            },false);
+        }
+        if(window.plus){
+            plusReady();
+        }else{
+            document.addEventListener('plusready',plusReady,false);
+        }
+    </script>
+    <style type="text/css">
+        .tj-spinner-mask {
+            width:100%;
+            height:100%;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: #fff;
+            z-index: 2090;
+            background:url('start.png') no-repeat;
+            -webkit-background-size: 100% 100%;
+            background-size: 100% 100%;
+        }
+        .j_loading {
+            position: absolute;
+            top: 50%;
+            left: 52%;
+            transform: translate(-50%, 0);
+            background-color: none!important;
+            z-index: 2099;
+            margin: 0 auto;
+            width: 0.8rem;
+            text-align: center;    
+        }
+    </style>
+  </head>
+    <body>
+        <div class="tj-spinner-mask j_t_start">
+            <img class="j_loading" src="loading.gif"alt="" />
+        </div>
+    <div id="app">
+    </div>
+    <script type="text/javascript">
+        var head= document.getElementsByTagName('body')[0]; 
+        var script= document.createElement('script'); 
+        script.type= 'text/javascript';
+        script.src= './dist/build.js?'+parseInt(Math.random()*10000); 
+        head.appendChild(script); 
+        script.onload= function(){
+            document.querySelector('.j_t_start').style.display = 'none';
+        }
+    </script>
+  </body>
+</html>
